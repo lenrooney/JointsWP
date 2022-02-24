@@ -1,6 +1,8 @@
 // GULP PACKAGES
+const sass = require('gulp-sass')(require('sass'));
+
 // Most packages are lazy loaded
-var gulp  = require('gulp'),
+var gulp = require('gulp'),
     gutil = require('gulp-util'),
     browserSync = require('browser-sync').create(),
     filter = require('gulp-filter'),
@@ -118,7 +120,7 @@ gulp.task('styles', function() {
             this.emit('end');
         }))
 		.pipe(plugin.sourcemaps.init())
-		.pipe(plugin.sass())
+		.pipe(sass().on('error', sass.logError))
 		.pipe(plugin.autoprefixer({
 		    browsers: [
 		    	'last 2 versions',
